@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrms.mapper.AttendanceMapper">
+    <sql id="table_name">attendance</sql>
+    <sql id="select_fields">
+        w_id,w_eid,w_workday,w_takeoff,w_late,w_early,w_skip
+    </sql>
+
+    <resultMap id="withAttMap" type="com.hrms.bean.Attendance">
+        <id column="w_id" property="wId"></id>
+        <result column="w_eid" property="wEid"></result>
+        <result column="w_workday" property="workDay"></result>
+        <result column="w_takeoff" property="wTakeoff"></result>
+        <result column="w_late" property="wLate"></result>
+        <result column="w_early" property="wEarly"></result>
+        <result column="w_skip" property="wSkip"></result>
+    </resultMap>
+
+    <sql id="select_sign">
+        sg_id,sg_eid,sg_start_time,sg_end_time
+    </sql>
+    <resultMap id="withSignMap" type="com.hrms.bean.Sign">
+        <id column="sg_id" property="sgId"></id>
+        <result column="sg_eid" property="sgEid"></result>
+        <result column="sg_start_time" property="startTime"></result>
+        <result column="sg_end_time" property="endTime"></result>
+    </resultMap>
+
+    <select id="getAttList" resultMap="withAttMap">
+        SELECT
+        <include refid="select_fields"></include>
+        FROM
+        attendance a left join  tbl_emp e
+        ON
+        e.emp_id = a.w_eid
+        ORDER BY a.w_eid=#{employee.empId}
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <insert id="setSignIn">
+        insert into sign(sg_id,sg_eid,sg_start_time) values (null,#{employee.empId},#{date})
+    </insert>
+
+    <select id="findDate" resultMap="withSignMap" parameterType="com.hrms.bean.Employee">
+        select
+        <include refid="select_sign"></include>
+        from
+        sign
+        where sg_eid = #{empId}
+    </select>
+    <update id="setEndSign" >
+        update sign set sg_end_time = #{date} where sg_eid = #{employee.empId};
+    </update>
+    <update id="setSignDay">
+        update attendance set w_takeoff = w_takeoff + #{dayNum} where w_eid = #{empId}
+    </update>
+    <insert id="addFistAtten">
+        insert into attendence(w_id,w_eid,w_workday) values (null,#{empId},1)
+    </insert>
+    <update id="upAttenWork">
+        update attendence set w_workday = w_workday+1 where w_eid =#{empId}
+    </update>
+
+</mapper>

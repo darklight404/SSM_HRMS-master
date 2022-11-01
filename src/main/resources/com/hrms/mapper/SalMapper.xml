@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrms.mapper.SalMapper">
+    <sql id="sal_name">
+        sal
+    </sql>
+    <sql id="select_fields">
+        s_id , s_eid, s_base,s_net,s_grant,s_paytime
+    </sql>
+
+
+    <resultMap id="salResult" type="com.hrms.bean.Sal">
+        <id column="s_id" property="id"></id>
+        <result column="s_eid" property="deptName"></result>
+        <result column="s_base" property="base"></result>
+        <result column="s_net" property="net"></result>
+        <result column="s_grant" property="grant"></result>
+        <result column="s_paytime" property="paytime"></result>
+    </resultMap>
+
+    <select id="selectSalByLimitAndOffset" resultMap="salResult">
+        SELECT
+        s_id as 'id', s_eid as 'deptName', s_base as 'base', s_net as 'net'
+        , s_grant as 'grant', s_paytime as 'paytime' FROM
+        sal s left join tbl_emp t on s.s_grant=t.emp_name
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <insert id="addSal">
+        insert into sal(s_id,s_eid,s_base,s_net,s_grant,s_paytime) values (null,#{eid},#{base},#{net},#{grant},#{paytime})
+    </insert>
+</mapper>
+
