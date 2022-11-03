@@ -28,7 +28,7 @@
                     </ol>
                 </div>
                 <div style="text-align: center">
-                <button onclick="signIn()" class="btn btn-info btn-lg">点我签到</button>
+                <button onclick="signIn()" class="btn btn-info ">点我签到</button>
 <%--                <button  onclick="signIn()">点我签到</button>--%>
                 </div>
             </div><!-- /.panel panel-success -->

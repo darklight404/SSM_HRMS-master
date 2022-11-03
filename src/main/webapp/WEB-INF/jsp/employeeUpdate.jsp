@@ -64,7 +64,7 @@
 <script type="text/javascript">
     <!-- ==========================员工修改操作=================================== -->
     $(".emp_edit_btn").click(function () {
-        //1 获取点击修改员工的id与name;
+        //1 获取点击修改员工的id与name;获取当前文本当前行的第一个单元格值
         var updateEmpId = $(this).parent().parent().find("td:eq(0)").text();
 
         //2 根据id或name查询出对应员工信息进行回显；

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="panel-group col-sm-2" id="hrms_sidebar_left" role="tablist" aria-multiselectable="true">
@@ -68,34 +69,86 @@
 <%--弹出的人数div--%>
 <div id="all_light">
 </div>
-<div id="contes" style="width: 500px;height: 300px; ">
+<div id="contes" style="width: 400px;height: 340px; ">
     <div style="width:500px;height:40px; ">
-        请假页面
-        <hr>
-        <button onclick="tui()" class="btn btn-warning">退出</button>
+
         <form  style=" margin-left: 100px;" action="/hrms/attendance/addLeaveDay" method="get">
-            <h1 align="center"style="color:red;font-size:30px">请假开始：</h1><input type="text"  name="dayTime" ><br>
-            <h1 align="center"style="color:red;font-size:30px">请假天数：</h1><input type="text"  name="dayNum"><br>
-            <h1 align="center"style="color:red;font-size:30px">请假结束：</h1><input type="text"  name="num" ><br>
-            <input type="submit" value="提交">
-            <input type="reset" value="重置">
+            <table>
+                <td>
+                    <tr cosplan="4" ><p id="note1" style="font-family:'Microsoft YaHei UI';font-size: 24px;font-weight: bolder " >请假条</p></tr><br>
+                </td>
+                <td>
+                    <tr></tr>
+                    <tr>请假开始:</tr>
+                    <tr><input type="text" name="dayTime"></tr><br>
+                    <tr></tr>
+                </td>
+                <td>
+                    <tr></tr>
+                    <tr>请假天数:</tr>
+                    <tr><input type="text" name="dayNum"></tr><br>
+                    <tr></tr>
+                <td>
+                    <tr></tr>
+                    <tr>请假结束:</tr>
+                    <tr><input type="text" name="num"></tr><br>
+                    <tr></tr>
+                </td>
+                <button type="submit" class="btn btn-success" id="note2">提交</button>
+                <button type="reset" class="btn btn-warning" id="note3">重置</button>
+            </table>
+<%--            <h1 align="center"style="color:red;font-size:30px">请假开始：</h1><input type="text"  name="dayTime" ><br>--%>
+<%--            <h1 align="center"style="color:red;font-size:30px">请假天数：</h1><input type="text"  name="dayNum"><br>--%>
+<%--            <h1 align="center"style="color:red;font-size:30px">请假结束：</h1><input type="text"  name="num" ><br>--%>
+<%--            <input type="submit" value="提交">--%>
+<%--            <input type="reset" value="重置">--%>
         </form>
+        <button onclick="tui()" class="btn btn-danger" style="margin-top: 10px;margin-left: 306px">退出</button>
     </div>
 </div>
+<style>
+    #contes{
+        border: 2px solid deepskyblue;
+        border-radius: 7%;
+        border-width: 10px;
+        border-style: inset;
+    }
+    #note1{
+        margin-left:60px ;
+        margin-top: 30px;
+    }
+    #note2{
+        margin-top:20px ;
+        margin-left: 30px;
+    }
+    #note3{
+        margin-top:20px ;
+        margin-left: 44px;
+    }
+
+</style>
 <%--弹出的签退div弹框--%>
 <div id="out_light">
 </div>
 <div id="out_contes" style="width: 500px;height: 300px; ">
     <div style="width:500px;height:40px; ">
-        今天这个班就上到这里吧，下班下班下班。
+        <p style="color:coral;font-size: 14px">今天这个班就上到这里吧，下班下班下班。</p>
         <hr>
-        <button onclick="tui()">退出</button>
+
         <form  style=" margin-left: 100px;" action="" method="get" >
-            <button onclick="signOut()">签退</button>
+            <button onclick="signOut()" class="btn btn-info " style="margin-left: 100px;margin-top: 30px">签退</button>
         </form>
+        <button onclick="tui()" class="btn btn-danger" style="margin-left:400px;margin-top: 90px">退出</button>
     </div>
 </div>
-
+<style>
+    #out_contes{
+        border: 2px solid mediumspringgreen;
+        border-radius: 7%;
+        border-width: 10px;
+        border-style: inset;
+    }
+</style>
 
 <script type="text/javascript">
     //跳转到个人信息
@@ -190,7 +243,8 @@ z-index: 2; /*覆盖*/
 #contes { /* 弹框的页面*/
 width: 500px; /*宽度*/
 height: 500px; /*高度*/
-background: url(/static/img/leave.png); /*背景色*/
+background: url(/static/img/bg2.jpg) no-repeat; /*背景色*/
+    background-size: cover;
 display: none; /*隐藏*/
 z-index: 2; /*覆盖*/
 position: absolute;

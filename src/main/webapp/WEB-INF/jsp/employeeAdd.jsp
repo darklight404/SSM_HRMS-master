@@ -87,7 +87,7 @@
             keyboard:true
         });
     });
-
+    // 在Bootstrap对表单控件进行状态校验
     //=========1 当鼠标从姓名输入框移开的时候，判断姓名输入框内的姓名是否重复 ============
     $("#add_inputName").change(function () {
         var empName = $("#add_inputName").val();

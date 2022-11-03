@@ -46,7 +46,7 @@
 </div>
 <style>
     body{
-        background: url("/static/img/bg3.jpg") no-repeat;
+        background: url("/static/img/bg3_1.jpg") no-repeat;
         background-size: cover;
     }
 </style>

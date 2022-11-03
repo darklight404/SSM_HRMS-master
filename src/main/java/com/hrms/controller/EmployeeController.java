@@ -231,7 +231,7 @@ public class EmployeeController {
         HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
         System.out.println("123"+employee);
-        mv.addObject("employee",employee);
+        mv.addObject("employee",employee);//设置传递给页面的数据
         return mv;
     }
     /*@RequestMapping(value = "/getMyLeave", method = RequestMethod.GET)
