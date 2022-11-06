@@ -27,8 +27,35 @@
                     </ol>
                 </div>
                 ${name}
+
+
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="emp_table">
+<%--                    进行模糊查询所要提交的表单--%>
+                    <form id="employeeForm">
+                        <input type="text" placeholder="请输入你要查询的信息">
+                        <input type="submit" value="查询" onclick="findEmployeeInfo()">
+                    </form>
+<%--                    <input type="text" placeholder="请输入要查询的信息" style="length: 400px" >--%>
+<%--                    <button id="findUserInfo" class="btn btn-info">查询</button>--%>
+                     <script>
+                         $(function(){
+                             findEmployeeInfo();
+                         });
+                         function findEmployeeInfo(){
+                         $ajax({
+                             type:"post",
+                             url:"${pageContext.request.contextPath}/hrms/findEmployeeInfo",
+                             data:$("#employeeForm").serialize(),
+                             dataType:"json",
+                             cathe:false,
+                             success:function(res){
+                         var list=res.employee;
+                         $("#")
+                         }
+                         })
+                         }
+                     </script>
                     <thead>
                     <th>员工编号</th>
                     <th>员工姓名</th>
